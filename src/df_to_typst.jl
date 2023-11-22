@@ -1,8 +1,5 @@
 using DataFrames
 
-testdf = DataFrame(ID=repeat(["p001", "p002"], 30),
-    label=repeat(["label-1-test", "label-2-test"], 30))
-
 function labelyst(dataframe, output_file; myh = "17mm", myw = "90mm", scale_factor = "0.2", font_size = "12pt")
     
     if occursin("/", output_file)
@@ -10,14 +7,14 @@ function labelyst(dataframe, output_file; myh = "17mm", myw = "90mm", scale_fact
         @assert isdir(dir) "Target directory is not existing! Please mkdir first."
     end
 
-    output_file = output_file * ".typ"
+    out_typ = output_file * ".typ"
 
-    if (isfile(output_file)) == false
-        makefile = `touch $output_file`
+    if (isfile(out_typ)) == false
+        makefile = `touch $out_typ`
         run(makefile)
     end
 
-    typ = open(output_file, "w")
+    typ = open(out_typ, "w")
 
     write(typ,
         """// import package to make QR codes
@@ -57,9 +54,11 @@ function labelyst(dataframe, output_file; myh = "17mm", myw = "90mm", scale_fact
 
     close(typ)
 
-    compile_typst = `typst compile $output_file`
+    compile_typst = `typst compile $out_typ`
     run(compile_typst)
 
-    remove_typ = `rm $output_file`
+    remove_typ = `rm $out_typ`
     run(remove_typ)
+    out_pdf = output_file * ".pdf"
+    print("PDF with labels created at " * out_pdf)
 end
