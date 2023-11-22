@@ -1,5 +1,10 @@
 using DataFrames
 
+"""
+    labelyst(dataframe, output_file)
+
+Takes a `julia DataFrame` and produces a `.pdf` file with labels containing QR-codes and human readable codes.
+"""
 function labelyst(dataframe, output_file; myh = "17mm", myw = "90mm", scale_factor = "0.2", font_size = "12pt")
     
     if occursin("/", output_file)
