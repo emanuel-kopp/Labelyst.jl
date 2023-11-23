@@ -5,7 +5,7 @@ using DataFrames
 
 Takes a `julia DataFrame` and produces a `.pdf` file with labels containing QR-codes and human readable codes.
 """
-function labelyst(dataframe, output_file, paper_format::Vector{String} = ["90mm", "17mm"]; label_format=["90mm", "17mm"], scale_factor="0.2", font_size="12pt")
+function labelyst(dataframe, output_file, paper_format::Vector{String}; label_format=["90mm", "17mm"], scale_factor="0.2", font_size="12pt")
 
     pagw = paper_format[1]
     pagh = paper_format[2]
@@ -73,7 +73,7 @@ function labelyst(dataframe, output_file, paper_format::Vector{String} = ["90mm"
     print("PDF with labels created at " * out_pdf)
 end
 
-function labelyst(dataframe, output_file, paper_format::String = "a4", label_division::Vector{Int}=[10, 3]; scale_factor="0.2", font_size="12pt")
+function labelyst(dataframe, output_file, paper_format::String, label_division::Vector{Int}; font_size="12pt")
 
     rows = label_division[1]
     cols = label_division[2]
@@ -121,7 +121,7 @@ function labelyst(dataframe, output_file, paper_format::String = "a4", label_div
         write(typ,
             """
             grid(
-            columns: (1fr, 3fr, 1fr, 1fr, 10fr, 4fr),
+            columns: (1fr, 6fr, 2fr, 1fr, 10fr, 2fr),
             cell(height: 100%/$rows)[],
             cell(height: 100%/$rows)[#align(horizon + center)[#qr-code("$ID")]],
             cell(height: 100%/$rows)[#align(horizon + center)[#rotate(270deg)[$ID]]],
@@ -140,8 +140,8 @@ function labelyst(dataframe, output_file, paper_format::String = "a4", label_div
     compile_typst = `typst compile $out_typ`
     run(compile_typst)
 
-    #remove_typ = `rm $out_typ`
-    #run(remove_typ)
+    remove_typ = `rm $out_typ`
+    run(remove_typ)
     out_pdf = output_file * ".pdf"
     print("PDF with labels created at " * out_pdf)
 end
