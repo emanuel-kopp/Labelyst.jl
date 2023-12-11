@@ -16,9 +16,7 @@ testdf = DataFrame(
 
 labelyst(testdf, "test-labels", "a4", [10, 3])
 ```
-```@raw html
-<iframe width="100%" height="800" src="docs/assets/klebeetiketten.pdf">
-```
+![photo](docs/assets/output-1.jpg)
 
 
 # Create labels for pot experiments
