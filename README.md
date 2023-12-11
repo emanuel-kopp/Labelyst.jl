@@ -11,12 +11,12 @@ The package exports one function only, `labelyst()`, which takes a `Julia` DataF
 
 ```julia
 testdf = DataFrame(
-    ID = repeat(["p001", "p002"], 30),
-    label = repeat(["label-1-test", "label-2-test"], 30))
-
-labelyst(testdf, "test-labels", "a4", [10, 3])
+    ID=repeat(["p001", "p002", "p003", "p004", "p005", "p006"], 4),
+    label=repeat(["label-1", "label-2", "label-3",
+                    "label-4", "label-5", "label-6"], 4))
+labelyst(testdf,"docs/assets/example_1", "a4", [10, 3] )
 ```
-![photo](docs/assets/output-1.jpg)
+![photo](docs/assets/example_1.jpg)
 
 
 # Create labels for pot experiments
