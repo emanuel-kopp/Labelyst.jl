@@ -1,8 +1,8 @@
 
 Todo:
-  ☐ Add documentation for labelyst
+  ✔ Add documentation for labelyst @done(23-12-11 13:39)
   ✔ Make new github repo and connect to local @done(23-11-23 13:13)
-  ☐ Add tests for labelyst
+  ✔ Add tests for labelyst @done(23-12-11 13:39)
   ✔ Add different formats for labels @done(23-11-23 13:13)
   ☐ Methods to define: 
     ☐ df + file + paper_format::String + div::Vect{int} for row x cols
