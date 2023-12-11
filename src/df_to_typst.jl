@@ -1,17 +1,6 @@
 using DataFrames
 
-"""
-    labelyst(dataframe, output_file)
-
-Takes a `julia DataFrame` and produces a `.pdf` file with labels containing QR-codes and human readable codes.
-"""
-function labelyst(dataframe, output_file, paper_format::Vector{String}; label_format=["90mm", "17mm"], scale_factor="0.2", font_size="12pt")
-
-    pagw = paper_format[1]
-    pagh = paper_format[2]
-    labw = label_format[1]
-    labh = label_format[2]
-    
+function make_outfile(output_file)
     if occursin("/", output_file)
         dir = rsplit(output_file, "/", limit=2)[1]
         @assert isdir(dir) "Target directory is not existing! Please mkdir first."
@@ -24,6 +13,32 @@ function labelyst(dataframe, output_file, paper_format::Vector{String}; label_fo
         run(makefile)
     end
 
+    return out_typ
+end
+
+function typtopdf(out_typ)
+    compile_typst = `typst compile $out_typ`
+    run(compile_typst)
+
+    remove_typ = `rm $out_typ`
+    run(remove_typ)
+    out_pdf = chop(out_typ, head = 0, tail = 3) * "pdf"
+    print("PDF with labels created at " * out_pdf)
+end
+
+"""
+    labelyst(dataframe, output_file)
+
+Takes a `julia DataFrame` and produces a `.pdf` file with labels containing QR-codes and human readable codes.
+"""
+function labelyst(dataframe, output_file, paper_format::Vector{String}; label_format=["90mm", "17mm"], scale_factor="0.2", font_size="12pt", make_pdf = true)
+
+    pagw = paper_format[1]
+    pagh = paper_format[2]
+    labw = label_format[1]
+    labh = label_format[2]
+    
+    out_typ = make_outfile(output_file)
     typ = open(out_typ, "w")
 
     write(typ,
@@ -64,32 +79,19 @@ function labelyst(dataframe, output_file, paper_format::Vector{String}; label_fo
 
     close(typ)
 
-    compile_typst = `typst compile $out_typ`
-    run(compile_typst)
-
-    remove_typ = `rm $out_typ`
-    run(remove_typ)
-    out_pdf = output_file * ".pdf"
-    print("PDF with labels created at " * out_pdf)
+    if make_pdf == true
+        typtopdf(out_typ)
+    elseif make_pdf == false
+        print("typ with labels created at " * out_typ)
+    end
 end
 
-function labelyst(dataframe, output_file, paper_format::String, label_division::Vector{Int}; font_size="12pt")
+function labelyst(dataframe, output_file, paper_format::String, label_division::Vector{Int}; font_size="12pt", make_pdf = true)
 
     rows = label_division[1]
     cols = label_division[2]
     
-    if occursin("/", output_file)
-        dir = rsplit(output_file, "/", limit=2)[1]
-        @assert isdir(dir) "Target directory is not existing! Please mkdir first."
-    end
-
-    out_typ = output_file * ".typ"
-
-    if (isfile(out_typ)) == false
-        makefile = `touch $out_typ`
-        run(makefile)
-    end
-
+    out_typ = make_outfile(output_file)
     typ = open(out_typ, "w")
 
     write(typ,
@@ -136,12 +138,9 @@ function labelyst(dataframe, output_file, paper_format::String, label_division::
     write(typ, ")")
 
     close(typ)
-
-    compile_typst = `typst compile $out_typ`
-    run(compile_typst)
-
-    remove_typ = `rm $out_typ`
-    run(remove_typ)
-    out_pdf = output_file * ".pdf"
-    print("PDF with labels created at " * out_pdf)
+    if make_pdf == true
+        typtopdf(out_typ)
+    elseif make_pdf == false
+        print("typ with labels created at " * out_typ)
+    end
 end
