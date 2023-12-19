@@ -37,13 +37,12 @@ end
 
 Takes a `julia DataFrame` and produces a `.pdf` file with labels containing QR-codes and human readable codes.
 """
-function labelyst(dataframe, output_file, paper_format::Vector{String}; label_format=["90mm", "17mm"], scale_factor="0.2", font_size="12pt", make_pdf = true)
+# Method 1: assumes one label per page
+function labelyst(dataframe, output_file, paper_format::Vector{String};scale_factor="0.2", font_size="12pt", make_pdf = true)
 
     pagw = paper_format[1]
     pagh = paper_format[2]
-    labw = label_format[1]
-    labh = label_format[2]
-    
+
     out_typ = make_outfile(output_file)
     typ = open(out_typ, "w")
 
@@ -74,7 +73,7 @@ function labelyst(dataframe, output_file, paper_format::Vector{String}; label_fo
             #grid(
             columns: (1fr, 3fr, 1fr, 1fr, 10fr, 4fr),
             cell(height: 100%)[],
-            cell(height: 100%)[#align(horizon + center)[#qr-code("$ID", height: $labh - $labh*$scale_factor, width: $labh - $labh*$scale_factor)]],
+            cell(height: 100%)[#align(horizon + center)[#qr-code("$ID", height: $pagh - $pagh*$scale_factor, width: $pagh - $pagh*$scale_factor)]],
             cell(height: 100%)[#align(horizon + center)[#rotate(270deg)[$ID]]],
             cell(height: 100%)[],
             cell(height: 100%, inset: 5%)[#align(horizon + left)[$label]],
@@ -92,6 +91,7 @@ function labelyst(dataframe, output_file, paper_format::Vector{String}; label_fo
     end
 end
 
+# Method 2: standard paper size (rectangle) and cols x rows
 function labelyst(dataframe, output_file, paper_format::String, label_division::Vector{Int}; font_size="12pt", make_pdf = true)
 
     check_typst_papersize(paper_format)
@@ -108,6 +108,69 @@ function labelyst(dataframe, output_file, paper_format::String, label_division::
 
         // Set page layout
         #set page(paper: "$paper_format", margin: 1mm)
+        #set text($font_size)
+
+        #let cell = rect.with(
+          inset: 3pt,
+          width: 100%,
+          height: 100%,
+          radius: 2pt,
+          stroke: none
+        )
+
+        #grid(
+            columns: ($cols),
+            rows: ($rows),
+
+        """)
+
+    for i in 1:nrow(dataframe)
+        foo = dataframe[i, :]
+        ID = foo.ID
+        label = foo.label
+        write(typ,
+            """
+            grid(
+            columns: (1fr, 6fr, 2fr, 1fr, 10fr, 2fr),
+            cell(height: 100%/$rows)[],
+            cell(height: 100%/$rows)[#align(horizon + center)[#qr-code("$ID")]],
+            cell(height: 100%/$rows)[#align(horizon + center)[#rotate(270deg)[$ID]]],
+            cell(height: 100%/$rows)[],
+            cell(height: 100%/$rows, inset: 5%)[#align(horizon + left)[$label]],
+            cell(height: 100%/$rows)[],
+            ),
+            """
+        )
+    end
+
+    write(typ, ")")
+
+    close(typ)
+    if make_pdf == true
+        typtopdf(out_typ)
+    elseif make_pdf == false
+        print("typ with labels created at " * out_typ)
+    end
+end
+
+# Method 3: custom paper size (rectangle) and cols x rows
+function labelyst(dataframe, output_file, paper_format::Vector{String}, label_division::Vector{Int}; font_size="12pt", make_pdf = true)
+
+    pagw = paper_format[1]
+    pagh = paper_format[2]
+
+    rows = label_division[1]
+    cols = label_division[2]
+    
+    out_typ = make_outfile(output_file)
+    typ = open(out_typ, "w")
+
+    write(typ,
+        """// import package to make QR codes
+        #import "@preview/cades:0.2.0": qr-code
+
+        // Set page layout
+        #set page(height: $pagh, width: $pagw, margin: 1mm)
         #set text($font_size)
 
         #let cell = rect.with(

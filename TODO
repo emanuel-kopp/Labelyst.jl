@@ -4,8 +4,8 @@ Todo:
   ✔ Make new github repo and connect to local @done(23-11-23 13:13)
   ✔ Add tests for labelyst @done(23-12-11 13:39)
   ✔ Add different formats for labels @done(23-11-23 13:13)
-  ☐ Methods to define: 
-    ☐ df + file + paper_format::String + div::Vect{int} for row x cols
-    ☐ df + file + form::Vect{String} -> assumes one label per page
-    ☐ df + file + form::Vect{String} + div::Vect{Int} row x cols for custom paper size
+  ✔ Methods to define: @done(23-12-19 10:53)
+    ✔ df + file + paper_format::String + div::Vect{int} for row x cols @done(23-12-19 10:46)
+    ✔ df + file + form::Vect{String} -> assumes one label per page @done(23-12-19 10:53)
+    ✔ df + file + form::Vect{String} + div::Vect{Int} row x cols for custom paper size @done(23-12-19 10:53)
   
