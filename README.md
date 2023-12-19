@@ -19,7 +19,7 @@ testdf = DataFrame(
 # Create labels
 labelyst(testdf,"example_1", "a4", [10, 3] )
 ```
-![photo](docs/assets/example_1.jpg)
+![photo](docs/assets/example_1.jpg){width=20 height=100}
 
 
 ## Create labels for pot experiments
