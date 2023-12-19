@@ -32,7 +32,7 @@ labelyst(testdf,"example_1", "a4", [8, 2])
 
 ## Create labels for pot experiments
 ```julia
-labelyst(testdf,"example_2", ["90mm", "17mm"])
+labelyst(testdf,"example_2", ["90mm", "17mm"]; font_size = "10pt")
 ```
 
 <img src="docs/assets/example_2.jpg" width="400">
