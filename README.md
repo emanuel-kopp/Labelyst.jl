@@ -10,9 +10,12 @@ The package exports one function only, `labelyst()`, which takes a `Julia` DataF
 ## Create labels to print on adhesive paper
 
 ```julia
+# Create example data
 testdf = DataFrame(
     ID=repeat(["p001", "p002", "p003", "p004", "p005", "p006"], 5),
     label=repeat(["label-1", "label-2", "label-3","label-4", "label-5", "label-6"], 5))
+```
+```julia
 labelyst(testdf,"example_1", "a4", [10, 3] )
 ```
 ![photo](docs/assets/example_1.jpg)
