@@ -27,7 +27,7 @@ testdf = DataFrame(
 # Create labels
 labelyst(testdf,"example_1", "a4", [8, 2] )
 ```
-<img src="docs/assets/example_1.jpg" > 
+<img src="docs/assets/example_1.jpg" width="500"> 
 
 
 ## Create labels for pot experiments
@@ -35,5 +35,5 @@ labelyst(testdf,"example_1", "a4", [8, 2] )
 labelyst(testdf,"example_2", ["90mm", "17mm"])
 ```
 
-<img src="docs/assets/example_2.jpg" >
+<img src="docs/assets/example_2.jpg" width="500">
 
