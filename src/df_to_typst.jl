@@ -39,11 +39,10 @@ Take a `julia DataFrame` and produce a `.pdf` file with labels containing QR-cod
 
 ...
 ### Keyword arguments
-- `scale_factor::String`: scales the size of the QR-code, default is 0.2
 - `font_size::String`: sets the font size for all the text on the label, default is `"12pt"`
 - `make_pdf::Bool`: define wether you want a `.pdf` as output or a raw `.typ` file, deault is `true`
 """
-function labelyst(dataframe, output_file, paper_format::Vector{String};scale_factor="0.2", font_size="12pt", make_pdf = true)
+function labelyst(dataframe, output_file, paper_format::Vector{String}; font_size="12pt", make_pdf = true)
 
     pagw = paper_format[1]
     pagh = paper_format[2]
@@ -78,7 +77,7 @@ function labelyst(dataframe, output_file, paper_format::Vector{String};scale_fac
             #grid(
             columns: (1fr, 3fr, 1fr, 1fr, 10fr, 4fr),
             cell(height: 100%)[],
-            cell(height: 100%)[#align(horizon + center)[#qr-code("$ID", height: $pagh - $pagh*$scale_factor, width: $pagh - $pagh*$scale_factor)]],
+            cell(height: 100%)[#align(horizon + center)[#qr-code("$ID")]],
             cell(height: 100%)[#align(horizon + center)[#rotate(270deg)[$ID]]],
             cell(height: 100%)[],
             cell(height: 100%, inset: 5%)[#align(horizon + left)[$label]],
