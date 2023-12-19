@@ -17,14 +17,14 @@ testdf = DataFrame(
 ```
 ```julia
 # Create labels
-labelyst(testdf,"example_1", "a4", [10, 3] )
+labelyst(testdf,"example_1", "a6", [4, 2] ) # output image rescaled for example
 ```
 <img src="docs/assets/example_1.jpg" height="400">
 
 
 ## Create labels for pot experiments
 ```julia
-labelyst(testdf, "example_2", ["90mm", "17mm"])
+labelyst(testdf, "example_2", ["90mm", "17mm"]) # output image rescaled for example
 ```
 
 <img src="docs/assets/example_2.jpg" height="400">
