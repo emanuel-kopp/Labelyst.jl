@@ -8,4 +8,4 @@ Todo:
     ✔ df + file + paper_format::String + div::Vect{int} for row x cols @done(23-12-19 10:46)
     ✔ df + file + form::Vect{String} -> assumes one label per page @done(23-12-19 10:53)
     ✔ df + file + form::Vect{String} + div::Vect{Int} row x cols for custom paper size @done(23-12-19 10:53)
-  
+☐ Change scale_factor to float instead of string, and consider name change to qr_scale or similar (something more understandable)

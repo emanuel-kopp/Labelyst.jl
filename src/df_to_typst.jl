@@ -31,13 +31,18 @@ function check_typst_papersize(papersize)
     @assert papersize ∈ supported_2023 "Given paper size not accepted by Typst (state: Dec. 2023), find supported paper sizes at https://typst.app/docs/reference/layout/page/"
 end
 
-
-"""
-    labelyst(dataframe, output_file)
-
-Takes a `julia DataFrame` and produces a `.pdf` file with labels containing QR-codes and human readable codes.
-"""
 # Method 1: assumes one label per page
+"""
+    labelyst(dataframe, output_file; <keyword arguments>)
+
+Take a `julia DataFrame` and produce a `.pdf` file with labels containing QR-codes and human readable codes.
+
+...
+### Keyword arguments
+- `scale_factor::String`: scales the size of the QR-code, default is 0.2
+- `font_size::String`: sets the font size for all the text on the label, default is `"12pt"`
+- `make_pdf::Bool`: define wether you want a `.pdf` as output or a raw `.typ` file, deault is `true`
+"""
 function labelyst(dataframe, output_file, paper_format::Vector{String};scale_factor="0.2", font_size="12pt", make_pdf = true)
 
     pagw = paper_format[1]
