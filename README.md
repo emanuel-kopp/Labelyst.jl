@@ -16,6 +16,7 @@ testdf = DataFrame(
     label=repeat(["label-1", "label-2", "label-3","label-4", "label-5", "label-6"], 5))
 ```
 ```julia
+# Create labels
 labelyst(testdf,"example_1", "a4", [10, 3] )
 ```
 ![photo](docs/assets/example_1.jpg)
