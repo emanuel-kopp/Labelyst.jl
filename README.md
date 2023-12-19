@@ -16,21 +16,24 @@ The input `DataFrame` needs to have one column named `ID` and one column named `
 ```julia
 # Create example data
 testdf = DataFrame(
-    ID=("p001", "p002", "p003", "p004", "p005", "p006", "p007", "p008"),
-    label=("label-1", "label-2", "label-3", "label-4",
-            "label-5", "label-6", "label-7", "label-8"))
+    ID=["p001", "p002", "p003", "p004", "p005", "p006", "p007", "p008",
+        "p009", "p010", "p011", "p012", "p013", "p014", "p015", "p016"],
+    label=["label-1", "label-2", "label-3", "label-4",
+            "label-5", "label-6", "label-7", "label-8",
+            "label-9", "label-10", "label-11", "label-12",
+            "label-13", "label-14", "label-15", "label-16"])
 ```
 ```julia
 # Create labels
-labelyst(testdf,"example_1", "a6", [4, 2] ) # output image rescaled for example
+labelyst(testdf,"example_1", "a4", [8, 2] )
 ```
-<img src="docs/assets/example_1.jpg" height="500">
+<img src="docs/assets/example_1.jpg" > 
 
 
 ## Create labels for pot experiments
 ```julia
-labelyst(testdf, "example_2", ["90mm", "17mm"]) # output image rescaled for example
+labelyst(testdf,"example_2", ["90mm", "17mm"])
 ```
 
-<img src="docs/assets/example_2.jpg" height="500">
+<img src="docs/assets/example_2.jpg" >
 
