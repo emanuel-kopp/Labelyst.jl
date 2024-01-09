@@ -49,6 +49,6 @@ testdf = DataFrame(
 ```
 ```julia
 # Create labels
-labelyst(testdf,"example_3", "a5", [8, 2]; font_size = "10pt")
+labelyst(testdf,"example_3", "a4", [8, 2])
 ```
 <img src="docs/assets/example_3.jpg" width="600"> 
