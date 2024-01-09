@@ -1,7 +1,6 @@
 push!(LOAD_PATH, "../src/")
 
 using Labelyst
-
 using Documenter
 
 makedocs(
@@ -10,7 +9,7 @@ makedocs(
     modules = [Labelyst],
     pages=[
                 "Home" => "index.md"
-               ]
+            ]
 )
 
 # Documenter can also automatically deploy documentation to gh-pages.
