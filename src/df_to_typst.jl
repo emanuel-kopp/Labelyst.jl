@@ -34,8 +34,8 @@ end
 # Method 1: assumes one label per page
 """
     labelyst(dataframe, output_file, paper_format::Vector{String}; <kwargs>)
-    labelyst(dataframe, output_file, paper_format::String; <kwargs>)
-    labelyst(dataframe, output_file, paper_format::Vector{String}; <kwargs>)
+    labelyst(dataframe, output_file, paper_format::String, label_division::Vector{Int64}; <kwargs>)
+    labelyst(dataframe, output_file, paper_format::Vector{String}, label_division::Vector{Int64}; <kwargs>)
 
 Take a `julia DataFrame` and produce a `.pdf` file with labels containing QR-codes and human readable codes.
 
