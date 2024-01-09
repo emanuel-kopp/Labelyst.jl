@@ -1,15 +1,21 @@
-using Documenter
+push!(LOAD_PATH, "../src/")
+
 using Labelyst
+
+using Documenter
 
 makedocs(
     sitename = "Labelyst",
     format = Documenter.HTML(),
-    modules = [Labelyst]
+    modules = [Labelyst],
+    pages=[
+                "Home" => "index.md"
+               ]
 )
 
 # Documenter can also automatically deploy documentation to gh-pages.
 # See "Hosting Documentation" and deploydocs() in the Documenter manual
 # for more information.
-deploydocs(
+deploydocs(;
     repo="github.com/emanuel-kopp/Labelyst.jl"
 )
