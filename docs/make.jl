@@ -4,10 +4,7 @@ using Labelyst
 makedocs(
     sitename = "Labelyst",
     format = Documenter.HTML(),
-    modules = [Labelyst],
-    pages=[
-        "Home" => "index.md"
-    ]
+    modules = [Labelyst]
 )
 
 # Documenter can also automatically deploy documentation to gh-pages.
