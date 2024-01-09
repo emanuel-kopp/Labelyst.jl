@@ -39,12 +39,13 @@ labelyst(testdf,"example_2", ["90mm", "17mm"]; font_size = "10pt")
 
 ## Multi-line labels
 
-Long label texts will print on multiple lines, and line-breaks can be force with a double backslash (`\\`).
+Long label texts will print on multiple lines, and line-breaks can be forced with a double backslash (`\\`).
 
 ```julia
 testdf = DataFrame(
     ID=["p001", "p002"],
-    label=["Treatment: red \\ Block: 2 \\ Contact: S. Omeone", "Treatment: blue \\ Block: 1 \\ Contact: S. Omeone"])
+    label=["Treatment: red \\ Block: 2 \\ Contact: S. Omeone",
+    "Treatment: blue \\ Block: 1 \\ Contact: S. Omeone"])
 ```
 ```julia
 # Create labels
