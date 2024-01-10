@@ -1,6 +1,7 @@
 # Labelyst
 
 [![Build Status](https://github.com/emanuel-kopp/Labelyst.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/emanuel-kopp/Labelyst.jl/actions/workflows/CI.yml?query=branch%3Amain)
+[![Stable](https://img.shields.io/badge/docs-dev-blue.svg)](https://emanuel-kopp.github.io/Labelyst.jl/dev/)
 
 ## Create labels containing QR-codes and human-readable codes for your experiments!
 
