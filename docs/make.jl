@@ -1,7 +1,7 @@
 using Documenter, Labelyst
 
 makedocs(
-    # sitename="Labelyst",
+    sitename="Labelyst"
     # format=Documenter.HTML(),
     # modules=[Labelyst],
     # pages=[
