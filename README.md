@@ -12,7 +12,7 @@ The package exports one function only, `labelyst()`, which takes a `Julia` DataF
 The input `DataFrame` needs to have one column named `ID` and one column named `label`. The `ID` column will be used to make the QR-code, it is advisable not to use too long IDs (e.g. for 500 samples, just use _s001-s500_ or something similar). The column `label` will be used for the human-readable part of the label: here one can add information about treatments, blocks or similar. Depending on the input parameters provided, one of the defined methods of `labelyst()` will be called to flexibly produce labels for different situations (i.e. pot labels, adhesive labels, ...)
 
 # Examples
-## Create labels to print on adhesive paper
+## Create labels to print on adhesive paper 
 
 ```julia
 # Create example data
@@ -25,7 +25,7 @@ testdf = DataFrame(
             "label-13", "label-14", "label-15", "label-16"])
 ```
 ```julia
-# Create labels
+# Create labels (in this example: 16 labels arranged as 8 rows and 2 columns on a DIN A4 paper)
 labelyst(testdf,"example_1", "a4", [8, 2]; font_size = "20pt")
 ```
 <img src="docs/assets/example_1.jpg" width="600"> 
@@ -33,6 +33,7 @@ labelyst(testdf,"example_1", "a4", [8, 2]; font_size = "20pt")
 
 ## Create labels for pot experiments
 ```julia
+# Here: one page of size 90mm x 17mm (i.e. a typical size for a pot label) per label
 labelyst(testdf,"example_2", ["90mm", "17mm"]; font_size = "10pt")
 ```
 
