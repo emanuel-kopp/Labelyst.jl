@@ -1,7 +1,7 @@
 name = "Labelyst"
 uuid = "e3e22cc6-7a1b-468c-b496-76d63e0a57cd"
 authors = ["emanuel-kopp <emanuel.kopp@outlook.com> and contributors"]
-version = "1.0.0"
+version = "0.1.0"
 
 [deps]
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
