@@ -1,0 +1,18 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Labelyst.jl
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Emanuel B.
+    family-names: Kopp
+    orcid: 'https://orcid.org/0009-0005-0240-3668'
+repository-code: 'https://github.com/emanuel-kopp/Labelyst.jl'
+abstract: >-
+  Create labels containing QR-codes and human-readable codes
+  for your experiments!
+license: MIT
