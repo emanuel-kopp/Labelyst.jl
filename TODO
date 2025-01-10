@@ -9,3 +9,4 @@ Todo:
     ✔ df + file + form::Vect{String} -> assumes one label per page @done(23-12-19 10:53)
     ✔ df + file + form::Vect{String} + div::Vect{Int} row x cols for custom paper size @done(23-12-19 10:53)
 ✔ Change scale_factor to float instead of string, and consider name change to qr_scale or similar (something more understandable) @done(23-12-19 15:21)
+☐ Make multiline labels possible (like the ones used for NIRS)
