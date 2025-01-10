@@ -1,4 +1,5 @@
 using DataFrames
+using Typstry: TypstCommand
 
 function make_outfile(output_file)
     if occursin("/", output_file)
@@ -17,7 +18,7 @@ function make_outfile(output_file)
 end
 
 function typtopdf(out_typ)
-    compile_typst = `typst compile $out_typ`
+    compile_typst = TypstCommand(["compile", out_typ])
     run(compile_typst)
 
     remove_typ = `rm $out_typ`
